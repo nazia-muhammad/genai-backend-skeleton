@@ -17,4 +17,3 @@ uvicorn main:app --reload
 Once running, open:
 - http://127.0.0.1:8000/docs
 Note: This works only while the server is running locally.
-
