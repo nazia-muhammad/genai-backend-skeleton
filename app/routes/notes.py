@@ -19,18 +19,36 @@ def create_note(payload: NoteCreate, db: Session = Depends(get_db)):
 
 @router.get("", response_model=list[NoteOut])
 def list_notes(db: Session = Depends(get_db)):
-    notes = db.query(Note).order_by(Note.id.desc()).all()
-    return notes
+    return db.query(Note).order_by(Note.id.desc()).all()
 
 
-@router.get("/{note_id}", response_model=NoteOut)
+@router.get(
+    "/{note_id}",
+    response_model=NoteOut,
+    responses={
+        404: {
+            "description": "Note not found",
+            "content": {"application/json": {"example": {"detail": "Note not found"}}},
+        }
+    },
+)
 def get_note(note_id: int, db: Session = Depends(get_db)):
     note = db.get(Note, note_id)
     if note is None:
         raise HTTPException(status_code=404, detail="Note not found")
     return note
 
-@router.put("/{note_id}", response_model=NoteOut)
+
+@router.put(
+    "/{note_id}",
+    response_model=NoteOut,
+    responses={
+        404: {
+            "description": "Note not found",
+            "content": {"application/json": {"example": {"detail": "Note not found"}}},
+        }
+    },
+)
 def update_note(note_id: int, payload: NoteCreate, db: Session = Depends(get_db)):
     note = db.get(Note, note_id)
     if note is None:
@@ -42,7 +60,16 @@ def update_note(note_id: int, payload: NoteCreate, db: Session = Depends(get_db)
     db.refresh(note)
     return note
 
-@router.delete("/{note_id}")
+
+@router.delete(
+    "/{note_id}",
+    responses={
+        404: {
+            "description": "Note not found",
+            "content": {"application/json": {"example": {"detail": "Note not found"}}},
+        }
+    },
+)
 def delete_note(note_id: int, db: Session = Depends(get_db)):
     note = db.get(Note, note_id)
     if note is None:
@@ -51,5 +78,4 @@ def delete_note(note_id: int, db: Session = Depends(get_db)):
     db.delete(note)
     db.commit()
     return {"deleted": True, "id": note_id}
-
 
