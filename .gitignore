@@ -31,3 +31,5 @@ dist/
 build/
 *.egg-info/
 notes.db
+notes_old.db
+notes.db
