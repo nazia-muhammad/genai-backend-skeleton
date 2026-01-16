@@ -1,5 +1,5 @@
 # GenAI Backend Skeleton (FastAPI)
-
+Proof (Swagger after cleanup): proof/week-3/swagger-get-notes-cleanup.png | proof/week-3/swagger-post-note-ok-cleanup.png | proof/week-3/swagger-put-note-ok-cleanup.png
 A simple FastAPI backend providing CRUD endpoints for notes (starter backend for future GenAI features).
 
 ## Run locally
