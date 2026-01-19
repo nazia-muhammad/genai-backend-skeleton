@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from ..db import get_db
@@ -18,8 +18,20 @@ def create_note(payload: NoteCreate, db: Session = Depends(get_db)):
 
 
 @router.get("", response_model=list[NoteOut])
-def list_notes(db: Session = Depends(get_db)):
-    return db.query(Note).order_by(Note.id.desc()).all()
+def list_notes(
+    limit: int = Query(10, ge=1, le=50),
+    offset: int = Query(0, ge=0),
+    db: Session = Depends(get_db),
+):
+    return (
+    db.query(Note)
+    .order_by(Note.id.desc())
+    .offset(offset)
+    .limit(limit)
+    .all()
+)
+
+
 
 
 @router.get(
