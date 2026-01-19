@@ -1,6 +1,7 @@
 ## Proof (Swagger screenshots)
 
 ### Database + CRUD
+
 - CRUD + cleanup:
   - proof/database-migrations/swagger-get-notes-cleanup.png
   - proof/database-migrations/swagger-post-note-ok-cleanup.png
@@ -10,6 +11,7 @@
   - proof/database-migrations/swagger-get-note-404-not-found.png
 
 ### Pagination
+
 - Pagination:
   - proof/database-migrations/swagger-get-notes-pagination.png
   - proof/database-migrations/swagger-get-notes-pagination-offset-4.png
