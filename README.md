@@ -17,6 +17,8 @@ A simple FastAPI backend providing CRUD endpoints for notes (starter backend for
 - Error handling test cleanup:
   - proof/database-migrations/swagger-boom-404-after-delete.png
 
+proof/observability/swagger-get-note-404-request-id.png
+
 ## Run locally
 
 1) Activate the conda environment:
