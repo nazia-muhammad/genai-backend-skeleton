@@ -21,6 +21,10 @@ proof/observability/swagger-get-note-404-request-id.png
 
 proof/observability/swagger-get-notes-limit-validation.png
 
+- Observability:
+  - proof/observability/swagger-health-200-request-id.png
+
+
 ## Run locally
 
 1) Activate the conda environment:
