@@ -5,7 +5,10 @@ from fastapi.responses import JSONResponse
 
 from .routes.notes import router as notes_router
 
+from .logging_middleware import add_request_id
+
 app = FastAPI(title="GenAI Backend Skeleton")
+app.middleware("http")(add_request_id)
 
 app.include_router(notes_router)
 
