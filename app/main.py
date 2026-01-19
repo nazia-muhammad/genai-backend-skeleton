@@ -10,6 +10,8 @@ app = FastAPI(title="GenAI Backend Skeleton")
 app.include_router(notes_router)
 
 logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+
 
 
 @app.get("/health")
