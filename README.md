@@ -19,6 +19,8 @@ A simple FastAPI backend providing CRUD endpoints for notes (starter backend for
 
 proof/observability/swagger-get-note-404-request-id.png
 
+proof/observability/swagger-get-notes-limit-validation.png
+
 ## Run locally
 
 1) Activate the conda environment:
