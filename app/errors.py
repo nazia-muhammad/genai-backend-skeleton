@@ -19,3 +19,6 @@ def unauthorized(detail: str = "Unauthorized") -> HTTPException:
 
 def forbidden(detail: str = "Forbidden") -> HTTPException:
     return HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=detail)
+
+def internal_error(detail: str = "Internal server error") -> HTTPException:
+    return HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=detail)
