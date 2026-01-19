@@ -1,7 +1,8 @@
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
 from ..db import get_db
+from ..errors import not_found
 from ..models import Note
 from ..schemas import NoteCreate, NoteOut
 
@@ -24,14 +25,12 @@ def list_notes(
     db: Session = Depends(get_db),
 ):
     return (
-    db.query(Note)
-    .order_by(Note.id.desc())
-    .offset(offset)
-    .limit(limit)
-    .all()
-)
-
-
+        db.query(Note)
+        .order_by(Note.id.desc())
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )
 
 
 @router.get(
@@ -47,7 +46,7 @@ def list_notes(
 def get_note(note_id: int, db: Session = Depends(get_db)):
     note = db.get(Note, note_id)
     if note is None:
-        raise HTTPException(status_code=404, detail="Note not found")
+        raise not_found("Note not found")
     return note
 
 
@@ -64,7 +63,7 @@ def get_note(note_id: int, db: Session = Depends(get_db)):
 def update_note(note_id: int, payload: NoteCreate, db: Session = Depends(get_db)):
     note = db.get(Note, note_id)
     if note is None:
-        raise HTTPException(status_code=404, detail="Note not found")
+        raise not_found("Note not found")
 
     note.title = payload.title
     note.content = payload.content
@@ -85,9 +84,8 @@ def update_note(note_id: int, payload: NoteCreate, db: Session = Depends(get_db)
 def delete_note(note_id: int, db: Session = Depends(get_db)):
     note = db.get(Note, note_id)
     if note is None:
-        raise HTTPException(status_code=404, detail="Note not found")
+        raise not_found("Note not found")
 
     db.delete(note)
     db.commit()
     return {"deleted": True, "id": note_id}
-
