@@ -8,6 +8,7 @@ A simple FastAPI backend providing CRUD endpoints for notes (starter backend for
   - proof/database-migrations/swagger-get-notes-cleanup.png
   - proof/database-migrations/swagger-post-note-ok-cleanup.png
   - proof/database-migrations/swagger-put-note-ok-cleanup.png
+  - proof/database-migrations/swagger-get-note-404-not-found.png
 
 - Pagination:
   - proof/database-migrations/swagger-get-notes-pagination.png
