@@ -26,17 +26,15 @@ def health():
 
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
-    logger.exception(
-    "Unhandled exception",
-    extra={
-        "path": str(request.url.path),
-        "request_id": getattr(request.state, "request_id", None),
-    },
-)
     request_id = getattr(request.state, "request_id", None)
-    body = ErrorResponse(detail="Internal server error", request_id=request_id).model_dump()
 
-    return JSONResponse(
-        status_code=500,
-        content=body,
+    logger.exception(
+        "Unhandled exception",
+        extra={
+            "path": str(request.url.path),
+            "request_id": request_id,
+        },
     )
+
+    body = ErrorResponse(detail="Internal server error", request_id=request_id).model_dump()
+    return JSONResponse(status_code=500, content=body)
