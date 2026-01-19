@@ -7,6 +7,8 @@ from .routes.notes import router as notes_router
 
 from .logging_middleware import add_request_id
 
+from .error_schemas import ErrorResponse
+
 app = FastAPI(title="GenAI Backend Skeleton")
 app.middleware("http")(add_request_id)
 
@@ -31,10 +33,10 @@ async def global_exception_handler(request: Request, exc: Exception):
         "request_id": getattr(request.state, "request_id", None),
     },
 )
+    request_id = getattr(request.state, "request_id", None)
+    body = ErrorResponse(detail="Internal server error", request_id=request_id).model_dump()
+
     return JSONResponse(
         status_code=500,
-       content={
-    "detail": "Internal server error",
-    "request_id": getattr(request.state, "request_id", None),
-},
+        content=body,
     )
