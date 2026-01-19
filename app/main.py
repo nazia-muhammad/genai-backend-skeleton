@@ -33,5 +33,8 @@ async def global_exception_handler(request: Request, exc: Exception):
 )
     return JSONResponse(
         status_code=500,
-        content={"detail": "Internal server error"},
+       content={
+    "detail": "Internal server error",
+    "request_id": getattr(request.state, "request_id", None),
+},
     )
