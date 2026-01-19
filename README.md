@@ -14,6 +14,9 @@ A simple FastAPI backend providing CRUD endpoints for notes (starter backend for
   - proof/database-migrations/swagger-get-notes-pagination.png
   - proof/database-migrations/swagger-get-notes-pagination-offset-4.png
 
+- Error handling test cleanup:
+  - proof/database-migrations/swagger-boom-404-after-delete.png
+
 ## Run locally
 
 1) Activate the conda environment:
