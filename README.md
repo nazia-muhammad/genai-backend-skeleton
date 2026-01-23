@@ -79,13 +79,12 @@ uvicorn app.main:app --reload
 
 - Login returns access_token:
   - proof/auth/auth-login-success.png
-  - proof/auth-login-success.png
 
 - Protected notes:
   - Missing token → 401:
-    - proof/notes-missing-token-401.png
+    - proof/notes/notes-missing-token-401.png
   - With token → 200:
-    - proof/notes-get-success-with-token.png
+    - proof/notes/notes-get-success-with-token.png
 
 ## Tests proof (pytest)
 
