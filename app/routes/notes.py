@@ -10,9 +10,12 @@ from ..models import User
 
 router = APIRouter(prefix="/notes", tags=["notes"])
 
-
 @router.post("", response_model=NoteOut)
-def create_note(payload: NoteCreate, db: Session = Depends(get_db)):
+def create_note(
+    payload: NoteCreate,
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
+):
     note = Note(title=payload.title, content=payload.content)
     db.add(note)
     db.commit()
