@@ -21,8 +21,10 @@ def get_current_user(
     token: str = Depends(get_bearer_token),
     db: Session = Depends(get_db),
 ) -> User:
-    # Expect: Authorization: Bearer <token>
-    user_id = decode_access_token(token)
+    try:
+        user_id = decode_access_token(token)
+    except Exception:
+        raise unauthorized("Invalid or expired token")
 
     user = db.get(User, int(user_id))
     if user is None:

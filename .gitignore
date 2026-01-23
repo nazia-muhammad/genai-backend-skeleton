@@ -33,3 +33,4 @@ build/
 notes.db
 notes_old.db
 notes.db
+test.db
