@@ -32,28 +32,22 @@ def list_notes(
         .all()
     )
 
-
 @router.get(
     "/{note_id}",
     response_model=NoteOut,
     responses={
-    404: {
-        "description": "Note not found",
-        "content": {
-            "application/json": {
-                "example": {
-                    "detail": "Note not found",
-                }
-            }
-        },
-    }
-}
+        404: {
+            "description": "Note not found",
+            "content": {"application/json": {"example": {"detail": "Note not found"}}},
+        }
+    },
 )
 def get_note(note_id: int, db: Session = Depends(get_db)):
     note = db.get(Note, note_id)
     if note is None:
         raise not_found("Note not found")
     return note
+
 
 @router.put(
     "/{note_id}",
@@ -94,3 +88,4 @@ def delete_note(note_id: int, db: Session = Depends(get_db)):
     db.delete(note)
     db.commit()
     return {"deleted": True, "id": note_id}
+
