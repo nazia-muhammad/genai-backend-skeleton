@@ -12,9 +12,28 @@
 ```bash
 conda create -n ai python=3.11 -y
 conda activate ai
+...
+pip install ...
 
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
+```
+
+### 2) Create `.env`
+```bash
+cp .env.example .env
+# edit JWT_SECRET_KEY if needed
+```
+
+### 3) Run migrations
+```bash
+alembic upgrade head
+```
+
+### 4) Run the server
+```bash
+uvicorn app.main:app --reload
+```
 
 ### Database + CRUD
 
