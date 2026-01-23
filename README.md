@@ -92,3 +92,14 @@ uvicorn app.main:app --reload
 - All tests passing:
   - proof/tests/pytest-7-passed.png
 
+## Docker proof (compose)
+
+- docker compose build + up:
+  - proof/docker/docker-compose-up-build.png
+
+- /health works inside container:
+  - proof/docker/docker-health.png
+
+- Docker Desktop shows container running:
+  - proof/docker/docker-desktop-containers-running.png
+
