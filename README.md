@@ -1,5 +1,10 @@
 ## Proof (Swagger screenshots)
 
+## CI (GitHub Actions)
+
+- CI running pytest on every push:
+  - proof/ci/github-actions-ci-success.png
+
 ## Quickstart (Local)
 
 ### 1) Create env + install deps
