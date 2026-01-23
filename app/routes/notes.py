@@ -16,7 +16,7 @@ def create_note(
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user),
 ):
-    note = Note(title=payload.title, content=payload.content)
+    note = Note(title=payload.title, content=payload.content, user_id=current_user.id)
     db.add(note)
     db.commit()
     db.refresh(note)
@@ -32,6 +32,7 @@ def list_notes(
 ):
     return (
         db.query(Note)
+        .filter(Note.user_id == current_user.id)
         .order_by(Note.id.desc())
         .offset(offset)
         .limit(limit)
@@ -48,12 +49,19 @@ def list_notes(
         }
     },
 )
-def get_note(note_id: int, db: Session = Depends(get_db)):
-    note = db.get(Note, note_id)
+def get_note(
+    note_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    note = (
+        db.query(Note)
+        .filter(Note.id == note_id, Note.user_id == current_user.id)
+        .first()
+    )
     if note is None:
         raise not_found("Note not found")
     return note
-
 
 @router.put(
     "/{note_id}",
@@ -71,7 +79,11 @@ def update_note(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    note = db.get(Note, note_id)
+    note = (
+    db.query(Note)
+    .filter(Note.id == note_id, Note.user_id == current_user.id)
+    .first()
+)
     if note is None:
         raise not_found("Note not found")
 
@@ -96,7 +108,11 @@ def delete_note(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    note = db.get(Note, note_id)
+    note = (
+    db.query(Note)
+    .filter(Note.id == note_id, Note.user_id == current_user.id)
+    .first()
+)
     if note is None:
         raise not_found("Note not found")
 
