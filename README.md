@@ -1,5 +1,16 @@
 ## Proof (Swagger screenshots)
 
+## Quickstart (Local)
+
+### 1) Create env + install deps
+
+```bash
+conda create -n ai python=3.11 -y
+conda activate ai
+
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+
 ### Database + CRUD
 
 - CRUD + cleanup:
