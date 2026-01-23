@@ -36,3 +36,24 @@
 
 - GET /notes/{id} 404 includes request_id:
   - proof/observability/swagger-get-note-404-request-id.png
+
+## Auth proof (JWT + protected routes)
+
+- Signup works:
+  - proof/auth/users-post-success.png
+
+- Login returns access_token:
+  - proof/auth/auth-login-success.png
+  - proof/auth-login-success.png
+
+- Protected notes:
+  - Missing token → 401:
+    - proof/notes-missing-token-401.png
+  - With token → 200:
+    - proof/notes-get-success-with-token.png
+
+## Tests proof (pytest)
+
+- All tests passing:
+  - proof/tests/pytest-7-passed.png
+
