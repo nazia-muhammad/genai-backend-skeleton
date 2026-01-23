@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 
 from .routes.notes import router as notes_router
 from .routes.users import router as users_router
+from .routes.auth import router as auth_router
 
 from .logging_middleware import add_request_id
 
@@ -15,6 +16,7 @@ app.middleware("http")(add_request_id)
 
 app.include_router(notes_router)
 app.include_router(users_router)
+app.include_router(auth_router)
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
