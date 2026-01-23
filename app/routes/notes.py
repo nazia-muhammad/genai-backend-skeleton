@@ -5,6 +5,8 @@ from ..db import get_db
 from ..errors import not_found
 from ..models import Note
 from ..schemas import NoteCreate, NoteOut
+from ..deps import get_current_user
+from ..models import User
 
 router = APIRouter(prefix="/notes", tags=["notes"])
 
@@ -20,6 +22,7 @@ def create_note(payload: NoteCreate, db: Session = Depends(get_db)):
 
 @router.get("", response_model=list[NoteOut])
 def list_notes(
+    current_user: User = Depends(get_current_user),
     limit: int = Query(10, ge=1, le=50),
     offset: int = Query(0, ge=0),
     db: Session = Depends(get_db),
