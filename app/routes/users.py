@@ -21,4 +21,3 @@ def signup(payload: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(user)
     return UserOut(id=user.id, email=user.email)
-

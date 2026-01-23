@@ -5,6 +5,7 @@ Revises: c4def9d0ebae
 Create Date: 2026-01-23 22:07:47.142139
 
 """
+
 from typing import Sequence, Union
 
 from alembic import op
@@ -12,8 +13,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '9e0cb22fd42f'
-down_revision: Union[str, Sequence[str], None] = 'c4def9d0ebae'
+revision: str = "9e0cb22fd42f"
+down_revision: Union[str, Sequence[str], None] = "c4def9d0ebae"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -29,9 +30,9 @@ def upgrade() -> None:
             ["id"],
         )
 
+
 def downgrade() -> None:
     with op.batch_alter_table("notes") as batch_op:
         batch_op.drop_constraint("fk_notes_user_id_users", type_="foreignkey")
         batch_op.drop_index("ix_notes_user_id")
         batch_op.drop_column("user_id")
-

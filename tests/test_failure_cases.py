@@ -46,4 +46,3 @@ def test_pagination_offset_validation(client):
     # offset must be >= 0 in your route
     r = client.get("/notes?limit=10&offset=-1", headers=headers)
     assert r.status_code == 422
-

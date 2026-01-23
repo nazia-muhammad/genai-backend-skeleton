@@ -26,7 +26,6 @@ def retry_with_backoff(
             last_err = e
             if attempt == retries:
                 raise
-            time.sleep(backoff_base_s * (2 ** attempt))
+            time.sleep(backoff_base_s * (2**attempt))
 
     raise last_err if last_err else RuntimeError("retry_with_backoff failed")
-

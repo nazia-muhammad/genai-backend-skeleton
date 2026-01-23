@@ -24,5 +24,3 @@ def login(payload: dict, db: Session = Depends(get_db)):
 
     token = create_access_token(str(user.id))
     return {"access_token": token, "token_type": "bearer"}
-
-

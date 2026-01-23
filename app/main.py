@@ -22,7 +22,6 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 
-
 @app.get("/health")
 def health():
     return {"status": "ok"}
@@ -40,5 +39,7 @@ async def global_exception_handler(request: Request, exc: Exception):
         },
     )
 
-    body = ErrorResponse(detail="Internal server error", request_id=request_id).model_dump()
+    body = ErrorResponse(
+        detail="Internal server error", request_id=request_id
+    ).model_dump()
     return JSONResponse(status_code=500, content=body)

@@ -18,7 +18,9 @@ def test_user_cannot_see_other_users_notes(client):
     headers_b = {"Authorization": f"Bearer {token_b}"}
 
     # --- user A creates a note ---
-    r = client.post("/notes", json={"title": "A note", "content": "secret"}, headers=headers_a)
+    r = client.post(
+        "/notes", json={"title": "A note", "content": "secret"}, headers=headers_a
+    )
     assert r.status_code == 200
     note_id = r.json()["id"]
 
@@ -43,4 +45,3 @@ def test_user_cannot_see_other_users_notes(client):
     # --- user B should NOT delete it ---
     r = client.delete(f"/notes/{note_id}", headers=headers_b)
     assert r.status_code == 404
-

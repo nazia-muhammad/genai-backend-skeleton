@@ -10,6 +10,7 @@ from ..models import User
 
 router = APIRouter(prefix="/notes", tags=["notes"])
 
+
 @router.post("", response_model=NoteOut)
 def create_note(
     payload: NoteCreate,
@@ -39,6 +40,7 @@ def list_notes(
         .all()
     )
 
+
 @router.get(
     "/{note_id}",
     response_model=NoteOut,
@@ -63,6 +65,7 @@ def get_note(
         raise not_found("Note not found")
     return note
 
+
 @router.put(
     "/{note_id}",
     response_model=NoteOut,
@@ -80,10 +83,10 @@ def update_note(
     current_user: User = Depends(get_current_user),
 ):
     note = (
-    db.query(Note)
-    .filter(Note.id == note_id, Note.user_id == current_user.id)
-    .first()
-)
+        db.query(Note)
+        .filter(Note.id == note_id, Note.user_id == current_user.id)
+        .first()
+    )
     if note is None:
         raise not_found("Note not found")
 
@@ -109,14 +112,13 @@ def delete_note(
     current_user: User = Depends(get_current_user),
 ):
     note = (
-    db.query(Note)
-    .filter(Note.id == note_id, Note.user_id == current_user.id)
-    .first()
-)
+        db.query(Note)
+        .filter(Note.id == note_id, Note.user_id == current_user.id)
+        .first()
+    )
     if note is None:
         raise not_found("Note not found")
 
     db.delete(note)
     db.commit()
     return {"deleted": True, "id": note_id}
-

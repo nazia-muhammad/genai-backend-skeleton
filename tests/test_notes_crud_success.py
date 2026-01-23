@@ -4,7 +4,9 @@ def test_notes_crud_success_flow(client):
     assert r.status_code in (200, 201)
 
     # login
-    r = client.post("/auth/login", json={"email": "crud@test.com", "password": "pass1234"})
+    r = client.post(
+        "/auth/login", json={"email": "crud@test.com", "password": "pass1234"}
+    )
     assert r.status_code == 200
     token = r.json()["access_token"]
     headers = {"Authorization": f"Bearer {token}"}
@@ -46,4 +48,3 @@ def test_notes_crud_success_flow(client):
     # get after delete -> 404
     r = client.get(f"/notes/{note_id}", headers=headers)
     assert r.status_code == 404
-

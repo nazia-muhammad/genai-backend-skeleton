@@ -35,4 +35,3 @@ def decode_access_token(token: str) -> str:
         return sub
     except JWTError as e:
         raise ValueError("Invalid token") from e
-

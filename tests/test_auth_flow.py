@@ -32,4 +32,3 @@ def test_signup_login_and_access_notes(client):
     assert res.status_code == 200
     notes = res.json()
     assert any(n["id"] == created["id"] for n in notes)
-

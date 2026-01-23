@@ -8,6 +8,7 @@ from pathlib import Path
 # Add project root to Python path so `import app...` works
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+# ruff: noqa: E402
 
 from app.main import app
 from app.db import get_db
@@ -18,12 +19,8 @@ TEST_DB_URL = "sqlite:///./test.db"
 
 @pytest.fixture(scope="function")
 def db_session():
-    engine = create_engine(
-        TEST_DB_URL, connect_args={"check_same_thread": False}
-    )
-    TestingSessionLocal = sessionmaker(
-        autocommit=False, autoflush=False, bind=engine
-    )
+    engine = create_engine(TEST_DB_URL, connect_args={"check_same_thread": False})
+    TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
     Base.metadata.create_all(bind=engine)
 
@@ -49,4 +46,3 @@ def client(db_session):
         yield c
 
     app.dependency_overrides.clear()
-

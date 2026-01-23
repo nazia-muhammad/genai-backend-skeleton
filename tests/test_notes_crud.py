@@ -22,12 +22,15 @@ def test_create_note_with_token_works(client):
     headers = {"Authorization": f"Bearer {token}"}
 
     # 3) create note with token
-    res = client.post("/notes", json={"title": "Hello", "content": "World"}, headers=headers)
+    res = client.post(
+        "/notes", json={"title": "Hello", "content": "World"}, headers=headers
+    )
     assert res.status_code == 200
     body = res.json()
     assert body["title"] == "Hello"
     assert body["content"] == "World"
     assert "id" in body
+
 
 def test_update_note_requires_token(client):
     res = client.put("/notes/1", json={"title": "t", "content": "c"})
@@ -37,4 +40,3 @@ def test_update_note_requires_token(client):
 def test_delete_note_requires_token(client):
     res = client.delete("/notes/1")
     assert res.status_code == 401
-
