@@ -22,3 +22,5 @@ def forbidden(detail: str = "Forbidden") -> HTTPException:
 
 def internal_error(detail: str = "Internal server error") -> HTTPException:
     return HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=detail)
+
+
