@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Envs
+.venv/
+venv/
+.env
+
+# DB files (local)
+notes.db
+test.db
+
+# Git + OS
+.git/
+.DS_Store
+
+# Proof screenshots (optional: keeps image small)
+proof/
+
