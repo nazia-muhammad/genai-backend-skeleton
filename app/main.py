@@ -11,6 +11,9 @@ from .logging_middleware import add_request_id
 
 from .error_schemas import ErrorResponse
 from fastapi.middleware.cors import CORSMiddleware
+from .rate_limit_middleware import rate_limit_middleware
+
+app.middleware("http")(rate_limit_middleware)
 
 app = FastAPI(title="GenAI Backend Skeleton")
 app.middleware("http")(add_request_id)
