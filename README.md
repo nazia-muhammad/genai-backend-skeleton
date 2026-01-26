@@ -88,6 +88,9 @@ Proof:
 - GET /notes/{id} 404 includes request_id:
   - proof/observability/swagger-get-note-404-request-id.png
 
+- Render logs show request duration + request_id:
+  - proof/observability/render-request-log-duration-request-id.png
+
 ## Auth proof (JWT + protected routes)
 
 - Signup works:
