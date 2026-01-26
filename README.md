@@ -91,6 +91,9 @@ Proof:
 - Render logs show request duration + request_id:
   - proof/observability/render-request-log-duration-request-id.png
 
+- Rate limiting returns 429:
+- proof/observability/swagger-health-429-rate-limit.png
+
 ## Auth proof (JWT + protected routes)
 
 - Signup works:
