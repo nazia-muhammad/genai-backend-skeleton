@@ -47,6 +47,7 @@ docker compose up --build
 - **Docs:** [/docs](https://genai-backend-skeleton.onrender.com/docs)
 
 Proof:
+- [Live / (root)](proof/deploy/live-root.png) 
 - [Live /health](proof/deploy/live-health.png)
 - [Live /docs](proof/deploy/live-docs.png)
 
