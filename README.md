@@ -35,10 +35,19 @@ alembic upgrade head
 uvicorn app.main:app --reload
 ```
 ## Quickstart (Docker)
-
 ### 1) Build + run
 ```bash
 docker compose up --build
+
+## Live Demo (Render)
+
+- Base URL: https://genai-backend-skeleton.onrender.com
+- Health: https://genai-backend-skeleton.onrender.com/health
+- Docs: https://genai-backend-skeleton.onrender.com/docs
+
+Proof:
+- [Live /health](proof/deploy/live-health.png)
+- [Live /docs](proof/deploy/live-docs.png)
 
 ### Database + CRUD
 
