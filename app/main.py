@@ -10,6 +10,7 @@ from .routes.auth import router as auth_router
 from .logging_middleware import add_request_id
 
 from .error_schemas import ErrorResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="GenAI Backend Skeleton")
 app.middleware("http")(add_request_id)
@@ -20,6 +21,14 @@ app.include_router(auth_router)
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # dev-friendly for now
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def root():
