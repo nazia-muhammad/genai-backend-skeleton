@@ -18,14 +18,7 @@ async def add_request_id(request: Request, call_next):
     response.headers["X-Request-ID"] = request_id
 
     logger.info(
-        "request",
-        extra={
-            "method": request.method,
-            "path": request.url.path,
-            "status_code": response.status_code,
-            "duration_ms": round(duration_ms, 2),
-            "request_id": request_id,
-        },
-    )
-
+    f'{request.method} {request.url.path} -> {response.status_code} '
+    f'duration_ms={duration_ms:.2f} request_id={request_id}'
+)
     return response
