@@ -13,10 +13,10 @@ from .error_schemas import ErrorResponse
 from fastapi.middleware.cors import CORSMiddleware
 from .rate_limit_middleware import rate_limit_middleware
 
-app.middleware("http")(rate_limit_middleware)
 
 app = FastAPI(title="GenAI Backend Skeleton")
 app.middleware("http")(add_request_id)
+app.middleware("http")(rate_limit_middleware)
 
 app.include_router(notes_router)
 app.include_router(users_router)
