@@ -21,6 +21,13 @@ app.include_router(auth_router)
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
+@app.get("/")
+def root():
+    return {
+        "message": "GenAI Backend Skeleton is running",
+        "health": "/health",
+        "docs": "/docs",
+    }
 
 @app.get("/health")
 def health():
