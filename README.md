@@ -37,6 +37,7 @@ uvicorn app.main:app --reload
 ## Quickstart (Docker)
 ### 1) Build + run
 ```bash
+```
 docker compose up --build
 
 ## Live Demo (Render)
