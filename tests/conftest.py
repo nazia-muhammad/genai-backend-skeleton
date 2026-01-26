@@ -14,6 +14,11 @@ from app.main import app
 from app.db import get_db
 from app.models import Base
 
+API_PREFIX = "/api/v1"
+
+def api(path: str) -> str:
+    return f"{API_PREFIX}{path}"
+
 TEST_DB_URL = "sqlite:///./test.db"
 
 
