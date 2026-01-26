@@ -94,6 +94,8 @@ Proof:
 - Rate limiting returns 429:
 - proof/observability/swagger-health-429-rate-limit.png
 
+- API versioning uses /api/v1: proof/observability/swagger-api-v1-endpoints.png
+
 ## Auth proof (JWT + protected routes)
 
 - Signup works:
