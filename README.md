@@ -41,9 +41,9 @@ docker compose up --build
 
 ## Live Demo (Render)
 
-- Base URL: https://genai-backend-skeleton.onrender.com
-- Health: https://genai-backend-skeleton.onrender.com/health
-- Docs: https://genai-backend-skeleton.onrender.com/docs
+- **Base URL:** [genai-backend-skeleton.onrender.com](https://genai-backend-skeleton.onrender.com)
+- **Health:** [/health](https://genai-backend-skeleton.onrender.com/health)
+- **Docs:** [/docs](https://genai-backend-skeleton.onrender.com/docs)
 
 Proof:
 - [Live /health](proof/deploy/live-health.png)
