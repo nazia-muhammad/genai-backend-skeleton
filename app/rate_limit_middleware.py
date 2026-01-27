@@ -54,6 +54,9 @@ async def rate_limit_middleware(request: Request, call_next):
     # Disable rate limiting during tests (CI)
     if os.getenv("PYTEST_CURRENT_TEST"):
         return await call_next(request)
+        # dev: don't rate limit localhost so we can test quota in Swagger
+    if request.client and request.client.host in ("127.0.0.1", "localhost"):
+        return await call_next(request)
 
     ok, _ip, retry_after = await limiter.allow(request)
     if not ok:

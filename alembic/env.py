@@ -20,6 +20,7 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 # ruff: noqa: E402
 from app.db import Base
+import app.models  # registers User/Note/Quota on Base.metadata
 
 target_metadata = Base.metadata
 

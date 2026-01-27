@@ -7,6 +7,7 @@ from ..models import Note
 from ..schemas import NoteCreate, NoteOut
 from ..deps import get_current_user
 from ..models import User
+from ..quota import charge_quota
 
 router = APIRouter(prefix="/notes", tags=["notes"])
 
@@ -16,6 +17,7 @@ def create_note(
     payload: NoteCreate,
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user),
+    _quota=Depends(charge_quota),
 ):
     note = Note(title=payload.title, content=payload.content, user_id=current_user.id)
     db.add(note)
@@ -81,6 +83,7 @@ def update_note(
     payload: NoteCreate,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
+    _quota=Depends(charge_quota),
 ):
     note = (
         db.query(Note)
@@ -110,6 +113,7 @@ def delete_note(
     note_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
+    _quota=Depends(charge_quota),
 ):
     note = (
         db.query(Note)
@@ -122,3 +126,4 @@ def delete_note(
     db.delete(note)
     db.commit()
     return {"deleted": True, "id": note_id}
+
