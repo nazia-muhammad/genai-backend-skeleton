@@ -94,7 +94,11 @@ Proof:
 - Rate limiting returns 429:
 - proof/observability/swagger-health-429-rate-limit.png
 
-- API versioning uses /api/v1: proof/observability/swagger-api-v1-endpoints.png
+- API versioning uses /api/v1:
+  - proof/observability/swagger-api-v1-endpoints.png
+
+- Quota returns 429 when daily limit exceeded:
+  - proof/observability/swagger-notes-429-quota.png
 
 ## Auth proof (JWT + protected routes)
 
