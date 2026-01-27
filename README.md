@@ -100,6 +100,8 @@ Proof:
 - Quota returns 429 when daily limit exceeded:
   - proof/observability/swagger-notes-429-quota.png
 
+- Latest GitHub Actions run is green: 
+  - proof/observability/actions-green.png
 ## Auth proof (JWT + protected routes)
 
 - Signup works:
