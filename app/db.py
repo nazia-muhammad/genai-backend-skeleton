@@ -21,3 +21,11 @@ def get_db():
         yield db
     finally:
         db.close()
+
+# --- Model imports (needed so Alembic can discover tables) ---
+# If you don't import models somewhere, alembic --autogenerate may create empty migrations.
+
+# --- Model imports (needed so Alembic can discover tables) ---
+from app.tenancy_models.organization import Organization
+from app.tenancy_models.membership import Membership
+from app.tenancy_models.workspace import Workspace

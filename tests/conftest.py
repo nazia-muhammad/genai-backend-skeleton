@@ -35,8 +35,7 @@ def db_session():
     finally:
         db.close()
         Base.metadata.drop_all(bind=engine)
-
-
+        
 @pytest.fixture(scope="function")
 def client(db_session):
     def override_get_db():

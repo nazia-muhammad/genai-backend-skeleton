@@ -23,6 +23,11 @@ from app.db import Base
 import app.models  # registers User/Note/Quota on Base.metadata
 
 target_metadata = Base.metadata
+# Import models so Alembic can detect them
+import app.models  # User, Note, Quota
+import app.tenancy_models.organization
+import app.tenancy_models.membership
+import app.tenancy_models.workspace
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
