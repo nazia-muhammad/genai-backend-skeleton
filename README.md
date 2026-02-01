@@ -1,3 +1,21 @@
+# GenAI Backend Skeleton (FastAPI)
+
+**Status:** ✅ Completed (Portfolio Project)  
+**Last updated:** 2026-01-30  
+**Next:** FinGenAI Backend Skeleton (v2) — new repo (link coming soon)
+
+A production-style FastAPI backend template demonstrating end-to-end backend delivery:
+auth, ownership + multi-tenant org/workspaces, RBAC, migrations, tests + CI, Docker, deploy, observability, and abuse controls.
+
+### What this project includes
+- **Auth:** JWT login + protected routes
+- **Data:** SQLAlchemy models + Alembic migrations
+- **Tenancy:** Organizations + memberships + workspaces (org-scoped access)
+- **RBAC:** OWNER / ADMIN / MEMBER enforcement (example: workspace creation restricted)
+- **Reliability:** rate limiting + daily quota
+- **Observability:** request_id middleware + structured logs + safe 500 errors
+- **Quality:** pytest coverage + GitHub Actions CI + Docker + live Render deployment
+
 ## Proof (Swagger screenshots)
 
 ## CI (GitHub Actions)
@@ -132,3 +150,27 @@ Proof:
 - Docker Desktop shows container running:
   - proof/docker/docker-desktop-containers-running.png
 
+## Proof (Swagger screenshots)
+
+### Auth
+- ![Login 200 (access token)](proof/auth/swagger-login-200-access-token.png)
+- ![Swagger authorize bearer set](proof/auth/swagger-authorize-bearer-set.png)
+
+### Database migrations
+- ![Alembic upgrade head](proof/database-migrations/alembic-upgrade-head.png)
+
+### Tenancy (org scoping)
+- ![Memberships owner org id](proof/tenancy/memberships-get-owner-org-id.png)
+- ![Missing X-Org-Id → 422](proof/tenancy/swagger-memberships-missing-x-org-id-422.png)
+- ![User B memberships (org id)](proof/tenancy/swagger-memberships-get-user-b-org-id.png)
+- ![Create note missing X-Org-Id → 422](proof/tenancy/swagger-notes-post-missing-x-org-id-422.png)
+- ![Create note with X-Org-Id → 200](proof/tenancy/swagger-notes-post-with-x-org-id-200.png)
+- ![Get notes org-scoped → 200](proof/tenancy/swagger-notes-get-org-scoped-200.png)
+- ![Wrong org → 403](proof/tenancy/notes-wrong-org-403.png)
+- ![Correct org → 200](proof/tenancy/notes-correct-org-200.png)
+
+### Observability
+- ![Login 500 with request_id](proof/observability/swagger-auth-login-500-with-request-id.png)
+
+### Tests
+- ![Pytest passed](proof/tests/pytest-passed.png)
