@@ -1,5 +1,8 @@
 # GenAI Backend Skeleton (FastAPI)
 
+📦 STATUS: COMPLETED / FROZEN PORTFOLIO PROJECT  
+❌ No further development will be done here
+
 **Status:** ✅ Completed (Portfolio Project)  
 **Last updated:** 2026-01-30  
 **Next:** FinGenAI Backend Skeleton (v2) — new repo (link coming soon)
